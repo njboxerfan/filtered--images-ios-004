@@ -1,10 +1,13 @@
 PODS:
+  - MBProgressHUD (0.9.1)
   - UIImage-Filter (0.0.1)
 
 DEPENDENCIES:
+  - MBProgressHUD
   - UIImage-Filter
 
 SPEC CHECKSUMS:
+  MBProgressHUD: f3747dcbd45a9e855a6b0674550651e0b7ed250c
   UIImage-Filter: fb3a463d88b55cfaddd77f2187dfed86d86d2f19
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.35.0

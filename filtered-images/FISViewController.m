@@ -8,10 +8,13 @@
 
 #import "FISViewController.h"
 #import <UIImage+Filters.h>
+#import <MBProgressHUD.h>
 
 @interface FISViewController ()
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 - (IBAction)vignetterTapped:(id)sender;
+- (IBAction)sepiaTapped:(id)sender;
+- (IBAction)invertedTapped:(id)sender;
 
 @end
 
@@ -30,10 +33,61 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)vignetterTapped:(id)sender {
-
-    UIImage *nonFiltered = [UIImage imageNamed:@"Mickey.jpg"];
-    UIImage *filtered = [nonFiltered imageWithFilter:UIImageFilterTypeColorInvert];
-    self.imageView.image = filtered;
+- (IBAction)vignetterTapped:(id)sender
+{
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeAnnularDeterminate;
+    hud.labelText = @"Loading";
+    
+    [queue addOperationWithBlock:^{
+        UIImage *nonFiltered = [UIImage imageNamed:@"Mickey.jpg"];
+        UIImage *filtered = [nonFiltered imageWithFilter:UIImageFilterTypeVignette];
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            self.imageView.image = filtered;
+            [hud hide:YES];
+        }];
+    }];
 }
+
+- (IBAction)sepiaTapped:(id)sender
+{
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeAnnularDeterminate;
+    hud.labelText = @"Loading";
+    
+    [queue addOperationWithBlock:^{
+        UIImage *nonFiltered = [UIImage imageNamed:@"Mickey.jpg"];
+        UIImage *filtered = [nonFiltered imageWithFilter:UIImageFilterTypeSepia];
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            self.imageView.image = filtered;
+            [hud hide:YES];
+        }];
+    }];
+}
+
+- (IBAction)invertedTapped:(id)sender
+{
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeAnnularDeterminate;
+    hud.labelText = @"Loading";
+    
+    [queue addOperationWithBlock:^{
+        UIImage *nonFiltered = [UIImage imageNamed:@"Mickey.jpg"];
+        UIImage *filtered = [nonFiltered imageWithFilter:UIImageFilterTypeColorInvert];
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            self.imageView.image = filtered;
+            [hud hide:YES];
+        }];
+    }];
+}
+
 @end

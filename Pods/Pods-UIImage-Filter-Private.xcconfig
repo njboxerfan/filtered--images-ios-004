@@ -1,5 +1,0 @@
-#include "Pods-UIImage-Filter.xcconfig"
-GCC_PREPROCESSOR_DEFINITIONS = COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/UIImage-Filter" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/UIImage-Filter"
-OTHER_LDFLAGS = -ObjC ${PODS_UIIMAGE_FILTER_OTHER_LDFLAGS}
-PODS_ROOT = ${SRCROOT}
